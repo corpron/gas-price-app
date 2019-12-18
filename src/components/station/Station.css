@@ -1,0 +1,17 @@
+.Station {
+    margin: 1rem;
+}
+
+.PriceLabel {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.Override.NoPadding {
+    padding: 0;
+}
+
+.Override.NoPaddingRight {
+    padding-right: 0;
+}
