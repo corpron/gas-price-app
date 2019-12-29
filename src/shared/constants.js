@@ -10,3 +10,13 @@ export const DIRECTIONS_MODE = 'data=!3m1!4b1!4m2!4m1!3e0';
 export const RADIUS_DEFAULT = '10';
 export const FUEL_TYPE_DEFAULT = 'reg';
 export const SORT_BY_DEFAULT = 'distance';
+
+export const TOGGLE_NAMES = {
+    SHOW_SORTING: 'showSorting',
+    SHOW_RADIUS: 'showRadius',
+};
+
+export const TOGGLE_STATE = {
+    [TOGGLE_NAMES.SHOW_SORTING]: false,
+    [TOGGLE_NAMES.SHOW_RADIUS]: false
+};

@@ -37,5 +37,4 @@ test('renders the StationList component', () => {
     const station2 = getByText('Mock Station 2');
     expect(station1).toBeInTheDocument();
     expect(station2).toBeInTheDocument();
-
 });

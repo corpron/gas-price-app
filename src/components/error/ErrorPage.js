@@ -1,6 +1,6 @@
 import React from 'react';
 import Button from 'react-bootstrap/Button';
-import './ErrorPage.css'
+import './ErrorPage.css';
 import { useTranslation } from 'react-i18next';
 
 // Functional component for the error page

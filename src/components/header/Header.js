@@ -5,7 +5,8 @@ import NavDropdown from 'react-bootstrap/NavDropdown';
 import './Header.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { Translation } from 'react-i18next';
-import { LOGO_IMAGE_URL } from '../../shared/constants'
+import { LOGO_IMAGE_URL, TOGGLE_NAMES, TOGGLE_STATE } from '../../shared/constants';
+import { FeatureToggleProvider, FeatureToggle } from 'react-feature-toggles';
 
 // Header component
 export default class Header extends React.Component {
@@ -30,35 +31,43 @@ export default class Header extends React.Component {
                                     />
                                     <span className="BrandTitle">{ t('appName') }</span>
                                 </Navbar.Brand>
-                                <Navbar.Toggle aria-controls="responsive-navbar-nav" />
-                                <Navbar.Collapse id="responsive-navbar-nav">
-                                    <Nav className="mr-auto">
-                                        <NavDropdown title={t('sortBy')}
-                                                     id="sort-dropdown">
-                                            <NavDropdown.Item onSelect={this.props.onSortChange}
-                                                              active={this.props.sortBy === 'distance'}
-                                                              eventKey="distance">{t('sortByDistance')}</NavDropdown.Item>
-                                            <NavDropdown.Item onSelect={this.props.onSortChange}
-                                                              active={this.props.sortBy === 'price'}
-                                                              eventKey="price">{t('sortByPrice')}</NavDropdown.Item>
-                                        </NavDropdown>
-                                        <NavDropdown title={t('within')}
-                                                     id="radius-dropdown">
-                                            <NavDropdown.Item onSelect={this.props.onRadiusChange}
-                                                              active={this.props.radius === '1'}
-                                                              eventKey="1">1</NavDropdown.Item>
-                                            <NavDropdown.Item onSelect={this.props.onRadiusChange}
-                                                              active={this.props.radius === '2'}
-                                                              eventKey="2">2</NavDropdown.Item>
-                                            <NavDropdown.Item onSelect={this.props.onRadiusChange}
-                                                              active={this.props.radius === '5'}
-                                                              eventKey="5">5</NavDropdown.Item>
-                                            <NavDropdown.Item onSelect={this.props.onRadiusChange}
-                                                              active={this.props.radius === '10'}
-                                                              eventKey="10">10</NavDropdown.Item>
-                                        </NavDropdown>
-                                    </Nav>
-                                </Navbar.Collapse>
+                                <FeatureToggleProvider featureToggleList={TOGGLE_STATE}>
+                                    <FeatureToggle featureName={TOGGLE_NAMES.SHOW_SORTING || TOGGLE_NAMES.SHOW_RADIUS}>
+                                        <Navbar.Toggle aria-controls="responsive-navbar-nav" />
+                                    </FeatureToggle>
+                                    <Navbar.Collapse id="responsive-navbar-nav">
+                                        <Nav className="mr-auto">
+                                            <FeatureToggle featureName={TOGGLE_NAMES.SHOW_SORTING}>
+                                                <NavDropdown title={t('sortBy')}
+                                                             id="sort-dropdown">
+                                                    <NavDropdown.Item onSelect={this.props.onSortChange}
+                                                                      active={this.props.sortBy === 'distance'}
+                                                                      eventKey="distance">{t('sortByDistance')}</NavDropdown.Item>
+                                                    <NavDropdown.Item onSelect={this.props.onSortChange}
+                                                                      active={this.props.sortBy === 'price'}
+                                                                      eventKey="price">{t('sortByPrice')}</NavDropdown.Item>
+                                                </NavDropdown>
+                                            </FeatureToggle>
+                                            <FeatureToggle featureName={TOGGLE_NAMES.SHOW_RADIUS}>
+                                                <NavDropdown title={t('within')}
+                                                             id="radius-dropdown">
+                                                    <NavDropdown.Item onSelect={this.props.onRadiusChange}
+                                                                      active={this.props.radius === '1'}
+                                                                      eventKey="1">1</NavDropdown.Item>
+                                                    <NavDropdown.Item onSelect={this.props.onRadiusChange}
+                                                                      active={this.props.radius === '2'}
+                                                                      eventKey="2">2</NavDropdown.Item>
+                                                    <NavDropdown.Item onSelect={this.props.onRadiusChange}
+                                                                      active={this.props.radius === '5'}
+                                                                      eventKey="5">5</NavDropdown.Item>
+                                                    <NavDropdown.Item onSelect={this.props.onRadiusChange}
+                                                                      active={this.props.radius === '10'}
+                                                                      eventKey="10">10</NavDropdown.Item>
+                                                </NavDropdown>
+                                            </FeatureToggle>
+                                        </Nav>
+                                    </Navbar.Collapse>
+                                </FeatureToggleProvider>
                             </Navbar>
                         </>
                 }

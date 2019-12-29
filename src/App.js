@@ -8,7 +8,7 @@ import StationList from './components/station/StationList'
 import LoadingPage from './components/loading/LoadingPage';
 import ErrorPage from './components/error/ErrorPage';
 import { MAX_RETRY_ATTEMPTS, STATIONS_BASE_URL,
-    RADIUS_DEFAULT, FUEL_TYPE_DEFAULT, SORT_BY_DEFAULT } from './shared/constants'
+    RADIUS_DEFAULT, FUEL_TYPE_DEFAULT, SORT_BY_DEFAULT } from './shared/constants';
 
 // Main App component
 
@@ -89,7 +89,7 @@ export default class App extends React.Component {
         );
     };
 
-    onSortChange = (eventKey, event) => {
+    onSortChange = (eventKey) => {
         this.setState(
             {
                 isLoaded: false,
@@ -99,7 +99,7 @@ export default class App extends React.Component {
         );
     };
 
-    onRadiusChange = (eventKey, event) => {
+    onRadiusChange = (eventKey) => {
         this.setState(
             {
                 isLoaded: false,
