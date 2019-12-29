@@ -29,10 +29,12 @@ export default class App extends React.Component {
 
     // callback function to reset the coordinates if they change
     getLocationInfo = (position) => {
-        this.setState({
-            coordinates: position.coords
-        });
-        this.fetchStations();
+        this.setState(
+            {
+                coordinates: position.coords
+            },
+            this.fetchStations
+        );
     };
 
     // fetch the stations with the correct coordinates, radius, fuel type, and sorting
@@ -82,9 +84,29 @@ export default class App extends React.Component {
             {
                 isLoaded: false,
                 error: null
-            }
+            },
+            this.fetchStations
         );
-        this.fetchStations();
+    };
+
+    onSortChange = (eventKey, event) => {
+        this.setState(
+            {
+                isLoaded: false,
+                sortBy: eventKey
+            },
+            this.fetchStations
+        );
+    };
+
+    onRadiusChange = (eventKey, event) => {
+        this.setState(
+            {
+                isLoaded: false,
+                radius: eventKey
+            },
+            this.fetchStations
+        );
     };
 
     // stop watching geolocation on tear down
@@ -112,7 +134,11 @@ export default class App extends React.Component {
         } else {
             return (
                 <>
-                    <Header/>
+                    <Header onSortChange={this.onSortChange}
+                            onRadiusChange={this.onRadiusChange}
+                            sortBy={this.state.sortBy}
+                            radius={this.state.radius}
+                    />
                     <StationList stations={items} coordinates={this.state.coordinates}/>
                 </>
             );

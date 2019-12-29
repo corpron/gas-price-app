@@ -10,6 +10,7 @@ const mockGeolocation = {
                 longitude: 45.3
             }
         }))),
+    clearWatch: jest.fn(),
     watchPosition: jest.fn()
 };
 
@@ -17,6 +18,6 @@ global.navigator.geolocation = mockGeolocation;
 
 test('renders the App', () => {
   const { getAllByText } = render(<App />);
-  const loading = getAllByText(/Checking nearest gas prices/i);
+  const loading = getAllByText(/Checking gas prices/i);
   expect(loading[0]).toBeInTheDocument();
 });

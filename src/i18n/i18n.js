@@ -10,11 +10,15 @@ const resources = {
             'errorPageUnavailable': 'Gas prices are unavailable now',
             'errorPageTryAgain': 'Please try again later or click below',
             'errorPageRefresh': 'Get gas prices',
-            'loadingPageText': 'Checking nearest gas prices',
+            'loadingPageText': 'Checking gas prices',
             'stationDefaultName': 'Gas Station',
             'stationPriceRegular': 'Regular',
             'stationPriceMidgrade': 'Midgrade',
-            'stationPricePremium': 'Premium'
+            'stationPricePremium': 'Premium',
+            'sortBy': 'Sort By',
+            'sortByDistance': 'Distance',
+            'sortByPrice': 'Price',
+            'within': 'Within (miles)'
         }
     }
 };
